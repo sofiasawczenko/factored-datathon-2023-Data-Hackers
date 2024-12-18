@@ -29,7 +29,6 @@ Initialize the SparkSession and EventHub consumer client for handling real-time 
 ```python
 from azure.eventhub import EventHubConsumerClient
 from pyspark.sql import SparkSession
-```
 
 # Define Event Hub Connection Parameters
 eventhub_namespace = "factored-datathon"
@@ -53,14 +52,16 @@ try:
         consumer_client.receive(on_event=on_event, starting_position="-1")
 except KeyboardInterrupt:
     print("Receiving has stopped.")
-3. Accessing the Data
+```
+### 3. Accessing the Data
 Use the following commands to access the batch-format data stored in Azure Data Lake:
 
 ```python
 dbutils.fs.ls("abfss://source-files@safactoreddatathon.dfs.core.windows.net/amazon_reviews/")
-This command lists the files within the amazon_reviews folder in the Azure Data Lake.
 ```
-Example Output:
+This command lists the files within the amazon_reviews folder in the Azure Data Lake.
+
+### Example Output:
 ```python
 [FileInfo(path='abfss://source-files@safactoreddatathon.dfs.core.windows.net/amazon_reviews/partition_1/', name='partition_1/', size=0, modificationTime=1689569806000),
  FileInfo(path='abfss://source-files@safactoreddatathon.dfs.core.windows.net/amazon_reviews/partition_10/', name='partition_10/', size=0, modificationTime=1689569900000),
